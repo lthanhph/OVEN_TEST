@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Validation\Rules\Password;
 
 class User extends Authenticatable
 {
@@ -37,4 +38,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    static function registerRules()
+    {
+        return [
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255',
+            'password' => ['required', 'max:255', Password::min(6)],
+            're-password' => 'required|same:password'
+        ];
+    }
 }

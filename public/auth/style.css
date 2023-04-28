@@ -1,0 +1,8 @@
+#login .card,
+#register .card{
+    margin-top: 20%;
+}
+
+#login .alert p{
+    margin-bottom: 0;
+}

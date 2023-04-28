@@ -1,0 +1,8 @@
+html, body, #main-container,
+#main-container .container-fluid,
+#main-container .row,
+#main-container .row > div,
+#main-container .card, 
+#main-container .card-body{
+    height: 100%;
+}
