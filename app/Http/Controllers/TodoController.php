@@ -34,8 +34,9 @@ class TodoController extends Controller
         ]);
     }
 
-    public function delete()
+    public function delete($id)
     {
-        
+        Todo::find($id)->delete();
+        return redirect('/')->with('message', 'Delete task success!');
     }
 }

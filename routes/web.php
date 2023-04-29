@@ -27,6 +27,6 @@ Route::middleware('auth')->group(function() {
 
     Route::match(['get', 'post'], 'task', [TodoController::class, 'create']);
     Route::match(['get', 'post'], 'task/edit/{id}', [TodoController::class, 'edit']);
-    Route::post('task/delete', [TodoController::class, 'delete']);
+    Route::post('task/delete/{id}', [TodoController::class, 'delete']);
 });
 

@@ -26,11 +26,37 @@
         @enderror
 
         <label for="execution_time" class="form-label">Execution time</label>
-        <input type="datetime-local" id="execution_time" name="execution_time" class="form-control mb-1" value="{{ $excTime }}">
+        <input type="datetime-local" id="execution_time" name="execution_time" class="form-control mb-1"
+            value="{{ $excTime }}">
         @error('execution_time')
             <p class="text-danger mb-2">{{ $message }}</p>
         @enderror
 
-        <input type="submit" class="btn btn-success mt-3" value="Submit">
+        <div class="mt-3 d-flex justify-content-between align-items-center">
+            <input type="submit" class="btn btn-success mt-3" value="Submit">
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#commonModal" title="Delete task"><i
+                    class="fas fa-trash-alt"></i></button>
+        </div>
     </form>
+
+    <div class="modal fade" id="commonModal" tabindex="-1">
+        <div class="modal-dialog">
+            <form action="{{ url('task/delete/' . $todo->id) }}" method="post">
+                @csrf
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">This task be permanently deleted.</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>You won't be able undo this action.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancle</button>
+                        <button type="submit" class="btn btn-danger submit">Delete</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 @endsection
