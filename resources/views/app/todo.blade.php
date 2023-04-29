@@ -33,7 +33,7 @@
         @enderror
 
         <div class="mt-3 d-flex justify-content-between align-items-center">
-            <input type="submit" class="btn btn-success mt-3" value="Submit">
+            <input type="submit" class="btn btn-success" value="Submit">
             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#commonModal" title="Delete task"><i
                     class="fas fa-trash-alt"></i></button>
         </div>

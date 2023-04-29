@@ -18,7 +18,7 @@
                     <div class="card">
                         <div class="card-header bg-success text-success d-flex justify-content-between">
 
-                            @if ($action == 'index') 
+                            @if (empty($action) || $action == 'index') 
                                 <h3 class="text-light">Todo App</h3>
                             @else 
                                 <a href="{{ url('/') }}" class="btn btn-dark">< Back</a>
