@@ -34,11 +34,15 @@
 
         <div class="mt-3 d-flex justify-content-between align-items-center">
             <input type="submit" class="btn btn-success" value="Submit">
+            
+            @if ($action == 'edit-task')
             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#commonModal" title="Delete task"><i
                     class="fas fa-trash-alt"></i></button>
+            @endif
         </div>
     </form>
 
+    @if ($action == 'edit-task')
     <div class="modal fade" id="commonModal" tabindex="-1">
         <div class="modal-dialog">
             <form action="{{ url('task/delete/' . $todo->id) }}" method="post">
@@ -52,11 +56,12 @@
                         <p>You won't be able undo this action.</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancle</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancle</button>                       
                         <button type="submit" class="btn btn-danger submit">Delete</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
+    @endif
 @endsection

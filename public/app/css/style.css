@@ -10,3 +10,18 @@ html, body, #main-container,
 .todo-item:hover{
     cursor: pointer;
 }
+
+@media screen and (max-width: 575px) {
+    .search-form input {
+        margin-bottom: 0.5rem;
+    }
+    .search-form > div {
+        align-items: stretch !important;
+    }
+}
+
+@media screen and (max-width: 474px) {
+    .todo-item .exc-time {
+        display: none;
+    }
+}

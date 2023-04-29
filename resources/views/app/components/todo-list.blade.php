@@ -10,7 +10,7 @@
                         {{ $todo->name }}
                     </label>
                 </div>
-                <p class="mb-0">{{ $todo->getFormattedExcTime() }}</p>
+                <p class="mb-0 exc-time">{{ $todo->getFormattedExcTime() }}</p>
             </div>
         </li>
     @endforeach
