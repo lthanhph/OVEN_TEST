@@ -11,4 +11,18 @@ class Todo extends Model
 
     protected $table = 'todos';
     protected $fillable = ['name', 'execution_time'];
+
+    public static function rules()
+    {
+        return [
+            'name' => 'required|max:255',
+            'execution_time' => 'required|date',
+        ];
+    }
+
+    public function getFormattedExcTime()
+    {
+        $excTime = strtotime($this->execution_time);
+        return date('d/m/Y h:i A', $excTime);
+    }
 }
