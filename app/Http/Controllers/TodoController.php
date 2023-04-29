@@ -44,12 +44,34 @@ class TodoController extends Controller
 
     public function search(Request $request)
     {
-        $search = $request->input('search');
-        $search = trim($search);
-        $todos = Todo::where('name', 'like', "%$search%")
-                    ->orWhere('execution_time', 'like', "%$search%")
-                    ->get();
-        return view('app/index', [
+        // $search = $request->input('search');
+        // $search = trim($search);
+        // $query = Todo::where('name', 'like', "%$search%");
+
+        // $timestamp = strtotime($search);
+        // if (!empty($timestamp)) {
+        //     $start = date('Y-m-d 00:00:00', $timestamp);
+        //     $end = date('Y-m-d 23:59:59', $timestamp);
+            
+        //     $query = $query->orWhere('execution_time', 'like', "%$search%");
+        // };
+        
+        $name = $request->input('name');
+        $time = $request->input('time');
+        
+        $query = Todo::select('*');
+        if (!empty($name)) {
+            $query = $query->where('name', 'like', "%$name%");
+        }
+        if (!empty($time)) {
+            $query = $query->orWhere('execution_time', 'like', "%$time%");
+        }
+        $todos = $query->get();
+        
+        session()->flash('name', $name);
+        session()->flash('time', $time);
+
+        return view('app/search', [
             'action' => 'search',
             'todos' => $todos,
         ]);

@@ -5,6 +5,15 @@ $(document).ready(function(){
     $('.todo-item').click(function() {
         window.location.href = $(this).attr('data-route-edit');
     });
+
+    $('.search-form').submit(function(event) {
+        var name = $(this).find('input[name="name"]').val();
+        var time = $(this).find('input[name="time"]').val();
+
+        if (!name && !time) {
+            event.preventDefault();
+        }
+    });
 })
 
 function markComplete(event){
