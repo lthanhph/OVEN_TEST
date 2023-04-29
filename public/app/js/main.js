@@ -1,6 +1,7 @@
 $(document).ready(function(){
     $('.todo-checkbox').click(markComplete);
-    
+    $('.todo-item label').click(markComplete);
+
     $('.todo-item').click(function() {
         window.location.href = $(this).attr('data-route-edit');
     });
