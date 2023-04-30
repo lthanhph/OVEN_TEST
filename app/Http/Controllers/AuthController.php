@@ -6,6 +6,8 @@ use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ForgotPassword;
 
 class AuthController extends Controller
 {
@@ -55,5 +57,16 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
      
         return redirect('/');
+    }
+
+    public function forgotPassword(Request $request)
+    {
+        $renderMail = $request->input('render-mail');
+        if ($renderMail == 1) {
+            $mailForgotPassword = new ForgotPassword();
+            return $mailForgotPassword->render();
+        }
+        
+        return Mail::to('lthanhph@gmail.com')->send(new ForgotPassword());
     }
 }

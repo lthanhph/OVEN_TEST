@@ -16,9 +16,11 @@ use App\Http\Controllers\TodoController;
 |
 */
 
-Route::middleware('check.logged.in')->group(function() {
+Route::middleware('guest')->group(function() {
     Route::match(['get', 'post'], 'login', [AuthController::class, 'login'])->name('login');
     Route::match(['get', 'post'], 'register', [AuthController::class, 'register']);  
+    Route::get('forgot-password', [AuthController::class, 'forgotPassword'])->name('password.request');
+    Route::post('forgot-password', [AuthController::class, 'forgotPassword'])->name('password.email');
 });
 
 Route::middleware('auth')->group(function() {
