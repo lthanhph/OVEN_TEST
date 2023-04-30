@@ -33,7 +33,7 @@ class AuthController extends Controller
             ]);
         }
 
-        return view('auth/login', ['title' => 'Login']);
+        return view('auth/login');
     }
 
     public function register(Request $request)
@@ -51,7 +51,7 @@ class AuthController extends Controller
             return redirect()->intended('/');
         }
 
-        return view('auth/register', ['title' => 'Register']);
+        return view('auth/register');
     }
 
     public function logout(Request $request)
@@ -77,13 +77,7 @@ class AuthController extends Controller
                 : back()->withErrors(['email' => __($status)]);
         }
 
-        $renderMail = $request->input('render-mail');
-        if ($renderMail == 1) {
-            $mailForgotPassword = new ForgotPassword();
-            return $mailForgotPassword->render();
-        }
-
-        return view('auth.forgot-password', ['title' => 'Forgot Password']);
+        return view('auth.forgot-password');
     }
 
     public function resetPassword($token)

@@ -24,7 +24,7 @@
             <p class="text-danger mb-2">{{ $message }}</p>
         @enderror
 
-        <label for="password" class="form-label">Password confirm</label>
+        <label for="re-password" class="form-label">Password confirm</label>
         <input type="password" id="re-password" name="re-password" class="form-control mb-1">
         @error('re-password')
             <p class="text-danger mb-2">{{ $message }}</p>

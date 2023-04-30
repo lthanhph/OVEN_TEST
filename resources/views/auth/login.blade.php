@@ -4,16 +4,8 @@
 @section('title', 'Login')
 
 @section('content')
-
-    @if ($errors->any())
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            @foreach ($errors->all() as $error)
-                <p>{{ $error }}</p>
-            @endforeach
-
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
+    @include('auth.components.alert')
+    @include('auth.components.status')
 
     <form action="{{ url('login') }}" method="POST" class="d-flex flex-column mb-3">
         @csrf
@@ -29,5 +21,5 @@
         <a href="{{ url('forgot-password') }}">Forgot password</a>
         <a href="{{ url('register') }}">Register</a>
     </div>
-    
+
 @endsection
