@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Validation\Rules\Password;
+use App\Notifications\ResetPasswordNotification;
 
 class User extends Authenticatable
 {
@@ -52,5 +53,11 @@ class User extends Authenticatable
     public function todos()
     {
         return $this->hasMany(Todo::class, 'user_id', 'id');
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        $url = url("reset-password/$token") . '?' . http_build_query(['email' => $this->email]);
+        $this->notify(new ResetPasswordNotification($url));
     }
 }

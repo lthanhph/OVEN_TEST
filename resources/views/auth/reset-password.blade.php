@@ -11,7 +11,7 @@
         <input type="hidden" name="token" value="{{ $token }}">
 
         <label for="email" class="form-label">Email</label>
-        <input type="text" id="email" name="email" value="{{ old('email') }}" class="form-control mb-1">
+        <input type="text" id="email" name="email" value="{{ request()->input('email') }}" class="form-control mb-1" readonly>
 
         <label for="password" class="form-label">Password </label>
         <input type="password" id="password" name="password" class="form-control mb-1">
