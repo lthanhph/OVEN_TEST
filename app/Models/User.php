@@ -48,4 +48,9 @@ class User extends Authenticatable
             're-password' => 'required|same:password'
         ];
     }
+
+    public function todos()
+    {
+        return $this->hasMany(Todo::class, 'user_id', 'id');
+    }
 }

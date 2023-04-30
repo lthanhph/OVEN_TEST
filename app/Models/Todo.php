@@ -10,7 +10,7 @@ class Todo extends Model
     use HasFactory;
 
     protected $table = 'todos';
-    protected $fillable = ['name', 'execution_time'];
+    protected $fillable = ['name', 'execution_time', 'user_id'];
 
     public static function rules()
     {

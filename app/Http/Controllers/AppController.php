@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Todo;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class AppController extends Controller
 {
     public function index()
     {
         return view('app/index', [
-            'todos' => Todo::all(),
+            'todos' => User::find(Auth::id())->todos,
             'action' => 'index'
         ]);
     }

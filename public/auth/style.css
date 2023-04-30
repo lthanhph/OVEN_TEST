@@ -1,5 +1,6 @@
 #login .card,
-#register .card{
+#register .card,
+#forgot-password .card{
     margin-top: 20%;
 }
 

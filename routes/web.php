@@ -21,6 +21,8 @@ Route::middleware('guest')->group(function() {
     Route::match(['get', 'post'], 'register', [AuthController::class, 'register']);  
     Route::get('forgot-password', [AuthController::class, 'forgotPassword'])->name('password.request');
     Route::post('forgot-password', [AuthController::class, 'forgotPassword'])->name('password.email');
+    Route::get('reset-password/{token}', [AuthController::class, 'resetPassword'])->middleware('guest')->name('password.reset');
+    Route::post('reset-password/', [AuthController::class, 'resetPasswordSubmit'])->middleware('guest')->name('password.update');
 });
 
 Route::middleware('auth')->group(function() {
