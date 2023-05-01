@@ -44,6 +44,7 @@ class AuthController extends Controller
                 're-password.same' => 'The password confirm and password must match.'
             ]);
             $validated['password'] = Hash::make($validated['password']);
+            $validated['api_token'] = User::getApiToken();
             $user = User::create($validated);
 
             Auth::login($user);

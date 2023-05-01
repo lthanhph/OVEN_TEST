@@ -11,6 +11,7 @@ class Todo extends Model
 
     protected $table = 'todos';
     protected $fillable = ['name', 'execution_time', 'user_id'];
+    protected $hidden = ['id', 'user_id'];
 
     public static function rules()
     {

@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'admin',
             'email' => 'admin@oven.com',
             'password' => Hash::make('123456'),
+            'api_token' => User::getApiToken()
         ]);
         
         Todo::Create([

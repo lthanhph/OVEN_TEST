@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Validation\Rules\Password;
 use App\Notifications\ResetPasswordNotification;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
@@ -19,7 +20,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'api_token'
     ];
 
     /**
@@ -28,7 +29,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'id'
     ];
 
     /**
@@ -44,7 +45,7 @@ class User extends Authenticatable
     {
         return [
             'name' => 'required|max:255',
-            'email' => 'required|email|max:255',
+            'email' => 'required|email|max:255|unique:users,email',
             'password' => ['required', 'max:255', Password::min(6)],
             're-password' => 'required|same:password'
         ];
@@ -59,5 +60,23 @@ class User extends Authenticatable
     {
         $url = url("reset-password/$token") . '?' . http_build_query(['email' => $this->email]);
         $this->notify(new ResetPasswordNotification($url));
+    }
+
+    public static function getApiToken()
+    {
+        $try = 1;
+        $max = 5;
+        $apiToken = null;
+        while ($try <= $max) {
+            $apiToken = Str::random(50);
+            $user = User::where('api_token', $apiToken)->first();
+            if (!empty($user)) {
+                $try++;
+            } else {
+                break;
+            }
+        }
+
+        return $apiToken;
     }
 }
